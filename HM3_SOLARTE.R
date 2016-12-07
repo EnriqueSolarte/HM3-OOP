@@ -30,7 +30,7 @@ da<-rbind(train,test)
 
 da<-merge(x=da,y=activities,by.x = "act",by.y = "index")
 #Removing data
-rm(test);rm(train);rm(activities)
+#rm(test);rm(train);rm(activities)
 rm(x_test);rm(x_train);rm(y_test);rm(y_train);rm(subjectID_test);rm(subjectID_train);
 
 #Plot Histogram for Activities
@@ -47,6 +47,8 @@ xlab("Subjects")+ ggtitle("Histogram for Subjects") + ylab("Frequecy")
 ggplot(da,aes(x = da$SubJectID,colour=da$activity,fill=da$activity)) +  
 geom_histogram(alpha=0.4,binwidth = 0.5,bins = 35)  +
 xlab("Subjects")+ ggtitle("Histogram for Subjects") + ylab("Frequecy")
+
+
 
 
 
