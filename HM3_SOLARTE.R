@@ -14,11 +14,11 @@ subjectID_train<-read.table("subjectID_train.txt")
 activities<-read.table("activityID.txt")
 
 #changing names
-names(y_train)<-"activity"
-names(y_test)<-"activity"
+names(y_train)<-"act"
+names(y_test)<-"act"
 names(subjectID_test)<-"SubJectID"
 names(subjectID_train)<-"SubJectID"
-names(activities)<-c("index","act")
+names(activities)<-c("index","activity")
 
 
 #Merge dataSet TRAIN and dataSet TEST
@@ -28,17 +28,25 @@ test<-data.frame(x_test,y_test,subjectID_test)
 #combinding DATASETS
 da<-rbind(train,test)
 
-da<-merge(x=da,y=activities,by.x = "activity",by.y = "index")
+da<-merge(x=da,y=activities,by.x = "act",by.y = "index")
 #Removing data
 rm(test);rm(train);rm(activities)
 rm(x_test);rm(x_train);rm(y_test);rm(y_train);rm(subjectID_test);rm(subjectID_train);
 
 #Plot Histogram for Activities
-ggplot(da,aes(x = da$act)) + 
-geom_histogram(stat="count",fill="blue",alpha=0.4)  +
+ggplot(da,aes(x = da$activity)) + 
+geom_histogram(stat="count",colour="green",fill="blue",alpha=0.4)  +
 xlab("Activities")+ ggtitle("Histogram for Activities") + ylab("Frequecy")
 
+#Plot Histogram for subjects
+ggplot(da,aes(x = da$SubJectID)) + 
+geom_histogram(colour="blue",fill="green",alpha=0.4,binwidth = 0.5,bins = 35)  +
+xlab("Subjects")+ ggtitle("Histogram for Subjects") + ylab("Frequecy")
 
+#Plot Histogram for subjects and activities
+ggplot(da,aes(x = da$SubJectID,colour=da$activity,fill=da$activity)) +  
+geom_histogram(alpha=0.4,binwidth = 0.5,bins = 35)  +
+xlab("Subjects")+ ggtitle("Histogram for Subjects") + ylab("Frequecy")
 
 
 
