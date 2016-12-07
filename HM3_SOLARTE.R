@@ -21,11 +21,9 @@ names(subjectID_train)<-"SubJectID"
 names(activities)<-c("index","act")
 
 
-#Marge dataSet TRAIN and dataSet TEST
+#Merge dataSet TRAIN and dataSet TEST
 train<-data.frame(x_train,y_train,subjectID_train)
 test<-data.frame(x_test,y_test,subjectID_test)
-#removing data
-rm(x_test);rm(x_train);rm(y_test);rm(y_train);rm(subjectID_test);rm(subjectID_train);
 
 #combinding DATASETS
 da<-rbind(train,test)
@@ -33,11 +31,15 @@ da<-rbind(train,test)
 da<-merge(x=da,y=activities,by.x = "activity",by.y = "index")
 #Removing data
 rm(test);rm(train);rm(activities)
+rm(x_test);rm(x_train);rm(y_test);rm(y_train);rm(subjectID_test);rm(subjectID_train);
 
-
+#Plot Histogram for Activities
 ggplot(da,aes(x = da$act)) + 
 geom_histogram(stat="count",fill="blue",alpha=0.4)  +
 xlab("Activities")+ ggtitle("Histogram for Activities") + ylab("Frequecy")
+
+
+
 
 
 
