@@ -32,18 +32,15 @@ da<-rbind(train,test)
 #Removing data
 rm(test);rm(train)
 
+da<-merge(x=da,y=activities,by.x = "activity",by.y = "index")
 
-da2<-merge(x=da,y=activities,by.x = "activity",by.y = "index")
+ggplot(da,aes(x = da$act)) + 
+geom_histogram(stat="count",fill="blue",alpha=0.4)  +
+xlab("Activities")+
+ggtitle("Histogram for Activities")+
+theme(plot.title = element_text(family = "Trebuchet MS", color="#666666", face="bold", size=22, hjust=0))
 
 
-
-ggplot(da,aes(x = da$activity)) + 
-geom_histogram(binwidth = 0.2)  + xlab("Activities")
-
-ggplot(da2,aes(x = da2$act)) + 
-  geom_histogram(stat="count")  + xlab("Activities")
-
-activities
 
 
 
