@@ -1,20 +1,19 @@
 
-x_test<-read.table("x_test.txt")
-x_train<-read.table("x_train.txt")
-y_test<-read.table("y_test.txt")
-y_train<-read.table("y_train.txt")
-subjectID_test<-read.table("subjectID_test.txt")
-subjectID_train<-read.table("subjectID_train.txt")
-names(y_train)<-"activity"
-names(y_test)<-"activity"
-names(subjectID_test)<-"SubJectID"
-names(subjectID_train)<-"SubJectID"
+housing <- read.csv("landdata-states-2016q1.xls")
+head(housing[1:5])
 
 
 
-train<-data.frame(x_train,y_train,subjectID_train)
-test<-data.frame(x_test,y_test,subjectID_test)
+datos<-sample(1:6,10,replace = TRUE)
+x<-data.frame(datos)
 
-lengthTest<-length(test)
-test$SubJectID
+actividades<-1:6
+factores<-LETTERS[1:6]
+y<-data.frame(actividades,factores)
 
+z<-merge(x,y,by="datos")
+
+library(plyr)
+
+z<-join(x, y, type = "inner")
+?join
