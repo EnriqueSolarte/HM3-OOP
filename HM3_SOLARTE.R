@@ -29,19 +29,15 @@ rm(x_test);rm(x_train);rm(y_test);rm(y_train);rm(subjectID_test);rm(subjectID_tr
 
 #combinding DATASETS
 da<-rbind(train,test)
-#Removing data
-rm(test);rm(train)
 
 da<-merge(x=da,y=activities,by.x = "activity",by.y = "index")
+#Removing data
+rm(test);rm(train);rm(activities)
+
 
 ggplot(da,aes(x = da$act)) + 
 geom_histogram(stat="count",fill="blue",alpha=0.4)  +
-xlab("Activities")+
-ggtitle("Histogram for Activities")+
-theme(plot.title = element_text(family = "Trebuchet MS", color="#666666", face="bold", size=22, hjust=0))
-
-
-
+xlab("Activities")+ ggtitle("Histogram for Activities") + ylab("Frequecy")
 
 
 
